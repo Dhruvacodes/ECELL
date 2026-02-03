@@ -2,30 +2,22 @@ const form = document.getElementById("regForm");
 const message = document.getElementById("message");
 const submitBtn = form.querySelector("button[type='submit']");
 
-// Use Google Apps Script OR local backup
-const API_URL = "https://script.google.com/macros/s/AKfycbxYA2BcIxS6ALQ3FHodvJO9YUOkQAizSgj1MMglWFGfTtYgNMbG2zwKCU0eBEoU5wVm-g/exec";
+// Replace this with your Google Apps Script URL
+const API_URL = "https://script.google.com/macros/s/AKfycbxK7If2ofzfhVdYr9ZKPd5cs1cL66p4DRznyn5QF13yKcqr1LuZLs3QSO2yvMdK8lEVdQ/exec";
 
-// Fallback data stored locally
+// Local backup storage
 let registrations = JSON.parse(localStorage.getItem("mesRegistrations")) || [];
 
-// Generate unique draw number (MES + timestamp + random)
+// Generate unique draw number
 function generateDrawNumber() {
   const timestamp = Date.now().toString(36).toUpperCase();
   const random = Math.random().toString(36).substring(2, 6).toUpperCase();
   return `MES-${timestamp.slice(-4)}${random}`;
 }
 
-// Check if already registered (phone or registration number)
-function checkDuplicate(phone, registration) {
-  return registrations.some(r => 
-    r.phone === phone || r.registration === registration
-  );
-}
-
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   
-  // Disable button to prevent double submission
   submitBtn.disabled = true;
   submitBtn.textContent = "Submitting...";
   message.textContent = "";
@@ -35,10 +27,7 @@ form.addEventListener("submit", async (e) => {
   const phone = document.getElementById("phone").value.trim();
   const registration = document.getElementById("registration").value.trim();
   
-  // Generate draw number
-  const drawNumber = generateDrawNumber();
-  
-  // Check local duplicate FIRST
+  // Check local duplicate first (for offline mode)
   const existingReg = registrations.find(r => 
     r.phone === phone || r.registration === registration
   );
@@ -56,44 +45,54 @@ form.addEventListener("submit", async (e) => {
     return;
   }
   
+  // Generate draw number
+  const drawNumber = generateDrawNumber();
+  
   const payload = {
     name: name,
     phone: phone,
     registration: registration,
-    drawNumber: drawNumber,
-    timestamp: new Date().toISOString()
+    drawNumber: drawNumber
   };
 
   try {
-    // Try Google Apps Script first
-    const response = await Promise.race([
-      fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json" }
-      }),
-      new Promise((_, reject) => 
-        setTimeout(() => reject(new Error("Timeout")), 5000)
-      )
-    ]);
+    // Send to Google Sheets
+    const response = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
 
     const result = await response.json();
 
     if (result.status === "success") {
       // Save to local storage as backup
-      registrations.push(payload);
+      const newReg = {
+        ...payload,
+        timestamp: new Date().toISOString()
+      };
+      registrations.push(newReg);
       localStorage.setItem("mesRegistrations", JSON.stringify(registrations));
       
       showSuccess(drawNumber);
     } else if (result.status === "duplicate") {
-      showDuplicate(result.drawNumber || drawNumber);
+      message.innerHTML = `
+        <div class="error-msg">
+          <div>⚠️ Already registered!</div>
+          <div class="existing-draw">Your Draw #: <strong>${result.drawNumber}</strong></div>
+        </div>
+      `;
+      message.className = "error";
     } else {
-      throw new Error("Invalid response");
+      throw new Error("Server error");
     }
   } catch (error) {
-    // If Google Apps Script fails, use local storage
-    console.warn("Using local backup:", error.message);
-    registrations.push(payload);
+    // If Google Sheets fails, save locally
+    console.log("Saving locally (offline mode):", error.message);
+    const newReg = {
+      ...payload,
+      timestamp: new Date().toISOString()
+    };
+    registrations.push(newReg);
     localStorage.setItem("mesRegistrations", JSON.stringify(registrations));
     showSuccess(drawNumber);
   } finally {
@@ -116,14 +115,4 @@ function showSuccess(drawNumber) {
   `;
   message.className = "success";
   form.reset();
-}
-
-function showDuplicate(drawNumber) {
-  message.innerHTML = `
-    <div class="error-msg">
-      <div>⚠️ Already registered!</div>
-      <div class="existing-draw">Your Draw #: <strong>${drawNumber}</strong></div>
-    </div>
-  `;
-  message.className = "error";
 }
