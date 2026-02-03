@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Registration</h2>
+    <p>Please fill in your details</p>
+
+    <form action="https://formspree.io/f/mpqlglny" method="POST">
+      <input type="text" name="name" placeholder="Full Name" required>
+
+      <input type="tel" name="phone" placeholder="Phone Number" 
+             pattern="[0-9]{10}" required>
+
+      <input type="text" name="registration" 
+             placeholder="Registration Number" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
