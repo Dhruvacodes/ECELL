@@ -1,29 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registration Form</title>
+  <meta charset="UTF-8">
+  <title>Innovation Mela Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
-    <h2>Registration</h2>
-    <p>Please fill in your details</p>
+<section class="hero">
+  <img src="ecell_logo.png" class="logo">
+  <h1>Innovation Mela</h1>
+  <p>Part of Manipal Entrepreneurship Summit 2026</p>
+</section>
 
-    <form action="https://formspree.io/f/mpqlglny" method="POST">
-      <input type="text" name="name" placeholder="Full Name" required>
+<section class="guests">
+  <h2>Esteemed Guests</h2>
+  <div class="guest-grid">
+    <div class="guest">Parul Gulati</div>
+    <div class="guest">Gaurav Taneja</div>
+    <div class="guest">Ankur Warikoo</div>
+    <div class="guest">Shantanu Deshpande</div>
+    <div class="guest">Sahiba Bali</div>
+  </div>
+</section>
 
-      <input type="tel" name="phone" placeholder="Phone Number" 
-             pattern="[0-9]{10}" required>
+<section class="form-section">
+  <div class="card">
+    <h2>Register Now</h2>
 
-      <input type="text" name="registration" 
-             placeholder="Registration Number" required>
-
+    <form id="regForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
+      <input type="text" id="registration" placeholder="Registration Number" required>
       <button type="submit">Submit</button>
     </form>
-  </div>
 
+    <p id="message"></p>
+  </div>
+</section>
+
+<footer>
+  <p>E-Cell MIT Manipal | MES 2026</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
