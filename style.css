@@ -4,12 +4,12 @@
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-15px); }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { text-shadow: 0 0 10px #f2c77c, 0 0 20px #f2c77c; }
-  50% { text-shadow: 0 0 20px #f2c77c, 0 0 40px #f2c77c, 0 0 60px #f2c77c; }
+  0%, 100% { text-shadow: 0 0 8px #f2c77c, 0 0 16px #f2c77c; }
+  50% { text-shadow: 0 0 15px #f2c77c, 0 0 30px #f2c77c, 0 0 45px #f2c77c; }
 }
 
 @keyframes rotate-shape {
@@ -25,6 +25,11 @@
 @keyframes shimmer {
   0% { background-position: -1000px 0; }
   100% { background-position: 1000px 0; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
 }
 
 @keyframes mouse-scroll {
@@ -54,7 +59,7 @@ body {
   background-size: 80px 80px;
   pointer-events: none;
   z-index: 1;
-  animation: shimmer 8s linear infinite;
+  animation: shimmer 20s linear infinite;
 }
 
 .floating-shapes {
@@ -78,7 +83,7 @@ body {
   height: 200px;
   top: 10%;
   left: 10%;
-  animation: float 6s ease-in-out infinite;
+  animation: float 12s ease-in-out infinite;
 }
 
 .shape-2 {
@@ -86,8 +91,8 @@ body {
   height: 150px;
   top: 60%;
   right: 15%;
-  animation: float 8s ease-in-out infinite;
-  animation-delay: 2s;
+  animation: float 16s ease-in-out infinite;
+  animation-delay: 3s;
 }
 
 .shape-3 {
@@ -95,8 +100,8 @@ body {
   height: 100px;
   top: 40%;
   left: 50%;
-  animation: float 7s ease-in-out infinite;
-  animation-delay: 1s;
+  animation: float 14s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
 .shape-4 {
@@ -104,8 +109,8 @@ body {
   height: 180px;
   bottom: 20%;
   left: 15%;
-  animation: float 9s ease-in-out infinite;
-  animation-delay: 3s;
+  animation: float 18s ease-in-out infinite;
+  animation-delay: 4s;
 }
 
 .shape-5 {
@@ -113,8 +118,8 @@ body {
   height: 120px;
   top: 15%;
   right: 10%;
-  animation: float 7.5s ease-in-out infinite;
-  animation-delay: 1.5s;
+  animation: float 15s ease-in-out infinite;
+  animation-delay: 2.5s;
 }
 
 .bg-blobs {
@@ -512,4 +517,73 @@ footer {
   .section-label {
     font-size: 10px;
   }
+}
+
+/* Draw Number & Message Styles */
+#message {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#message.success .success-msg {
+  background: rgba(46, 204, 113, 0.15);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+#message.error .error-msg {
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.success-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.draw-number {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(242, 199, 124, 0.2);
+  border-radius: 10px;
+  border: 2px dashed #f2c77c;
+}
+
+.draw-number span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+.draw-number strong {
+  font-size: 24px;
+  color: #f2c77c;
+  letter-spacing: 2px;
+  font-family: monospace;
+}
+
+.save-hint {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.existing-draw {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.existing-draw strong {
+  color: #f2c77c;
+  font-family: monospace;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
 }
