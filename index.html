@@ -2,38 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome to MES 2026!</title>
+  <title>Innovation Mela | MES 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
 
+<div class="bg-blobs"></div>
+
 <section class="hero">
   <img src="mes_logo.png" class="logo">
-  <h1>CONCLAVE LUCKY DRAW !</h1>
-  <p>Part of Manipal Entrepreneurship Summit 2026</p>
+  <h1>Innovation Mela</h1>
+  <p class="subtitle">Manipal Entrepreneurship Summit 2026</p>
+  <span class="tagline">Transforming Today, Redefining Tomorrow</span>
 </section>
 
-<section class="guests">
-  <h2>Esteemed Guests</h2>
-  <div class="guest-grid">
-    <div class="guest">Parul Gulati</div>
-    <div class="guest">Gaurav Taneja</div>
-    <div class="guest">Ankur Warikoo</div>
-    <div class="guest">Shantanu Deshpande</div>
-    <div class="guest">Sahiba Bali</div>
+<section class="speakers">
+  <h2>Meet Our Guests</h2>
+  <div class="speaker-grid">
+    <div class="speaker-card">
+      <img src="assets/speakers/parul_gulati.jpg" alt="Parul Gulati">
+      <h3>Parul Gulati</h3>
+    </div>
+    <div class="speaker-card">
+      <img src="assets/speakers/gaurav_taneja.jpg" alt="Gaurav Taneja">
+      <h3>Gaurav Taneja</h3>
+    </div>
+    <div class="speaker-card">
+      <img src="assets/speakers/ankur_warikoo.jpg" alt="Ankur Warikoo">
+      <h3>Ankur Warikoo</h3>
+    </div>
+    <div class="speaker-card">
+      <img src="assets/speakers/shantanu_deshpande.jpg" alt="Shantanu Deshpande">
+      <h3>Shantanu Deshpande</h3>
+    </div>
+    <div class="speaker-card">
+      <img src="assets/speakers/sahiba_bali.jpg" alt="Sahiba Bali">
+      <h3>Sahiba Bali</h3>
+    </div>
   </div>
 </section>
 
-<section class="form-section">
-  <div class="card">
-    <h2>Register Now!</h2>
+<section class="register">
+  <div class="glass-card">
+    <h2>Register Now</h2>
 
     <form id="regForm">
-      <input type="text" id="name" placeholder="Full Name" required>
-      <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
-      <input type="text" id="registration" placeholder="Registration Number" required>
-      <button type="submit">Submit</button>
+      <div class="field">
+        <input type="text" id="name" required>
+        <label>Full Name</label>
+      </div>
+
+      <div class="field">
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <label>Phone Number</label>
+      </div>
+
+      <div class="field">
+        <input type="text" id="registration" required>
+        <label>Registration Number</label>
+      </div>
+
+      <button type="submit">Secure My Spot</button>
     </form>
 
     <p id="message"></p>
@@ -41,7 +72,7 @@
 </section>
 
 <footer>
-  <p>E-Cell MIT Manipal | MES 2026</p>
+  <p>E-Cell MIT Manipal • MES 2026</p>
 </footer>
 
 <script src="script.js"></script>
