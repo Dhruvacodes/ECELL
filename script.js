@@ -1,7 +1,7 @@
 const form = document.getElementById("regForm");
 const message = document.getElementById("message");
 
-const API_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+const API_URL = "https://script.google.com/macros/s/AKfycbxYA2BcIxS6ALQ3FHodvJO9YUOkQAizSgj1MMglWFGfTtYgNMbG2zwKCU0eBEoU5wVm-g/exec";
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
