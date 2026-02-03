@@ -147,11 +147,11 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 70px 20px 40px;
-  min-height: 100vh;
+  padding: 70px 20px 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .hero-content {
@@ -446,4 +446,70 @@ footer {
   font-size: 13px;
   opacity: 0.7;
   border-top: 1px solid rgba(242,199,124,0.1);
+}
+
+/* Mobile & Tablet Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 38px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+  }
+  
+  .speakers h2 {
+    font-size: 28px;
+  }
+  
+  .speaker-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .speaker-card img {
+    height: 160px;
+  }
+  
+  .speaker-card h3 {
+    font-size: 13px;
+    padding: 0 8px;
+  }
+  
+  .glass-card {
+    padding: 25px;
+    margin: 0 10px;
+  }
+  
+  .floating-shapes {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .speaker-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .speaker-card img {
+    height: 140px;
+  }
+  
+  .speaker-card h3 {
+    font-size: 12px;
+    margin: 8px 0 10px;
+  }
+  
+  .logo {
+    width: 70px;
+  }
+  
+  .section-label {
+    font-size: 10px;
+  }
 }
