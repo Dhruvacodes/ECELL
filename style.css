@@ -447,10 +447,57 @@ footer {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 20px;
+  padding: 30px 20px;
   font-size: 13px;
-  opacity: 0.7;
   border-top: 1px solid rgba(242,199,124,0.1);
+}
+
+.results-text {
+  font-size: 16px;
+  color: #f2c77c;
+  margin-bottom: 20px;
+  opacity: 1;
+}
+
+.results-text strong {
+  color: #fff;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(242,199,124,0.3);
+  border-radius: 50%;
+  color: #f2c77c;
+  transition: all 0.3s ease;
+}
+
+.social-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.social-icon:hover {
+  background: #f2c77c;
+  color: #3a0f2e;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(242,199,124,0.4);
+}
+
+.footer-text {
+  opacity: 0.7;
+  margin: 0;
 }
 
 /* Hidden Admin Panel */
